@@ -1,113 +1,208 @@
-import Image from 'next/image'
+"use client";
+import { Avatar } from "@/components/ui/avatar";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import {
+  CheckIcon,
+  DownloadIcon,
+  FacebookIcon,
+  InstagramIcon,
+  ScanIcon,
+  TwitterIcon,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <>
+      <div className="relative">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gray-100 dark:bg-secondary/30">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                  Check Your Lottery Tickets Instantly
+                </h1>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                  Our app allows you to scan your lottery tickets and get
+                  instant results. No more waiting, know if you&apos;ve won
+                  immediately!
+                </p>
+              </div>
+              <div className="space-x-4">
+                <Link
+                  className={buttonVariants({ variant: "outline" })}
+                  href="#"
+                >
+                  Powerball
+                </Link>
+                <Link
+                  className={buttonVariants({ variant: "outline" })}
+                  href="#"
+                >
+                  MegaMillion
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className=" container w-full py-12 md:py-24 lg:py-32 ">
+          <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
+            <div className="space-y-3">
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
+                How It Works
+              </h2>
+              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+                Just three simple steps to get your lottery results.
+              </p>
+            </div>
+            <div className="grid w-full sm:grid-cols-3 grid-cols-1 items-center justify-center gap-8 lg:gap-12 [&>img]:mx-auto">
+              <div className="flex flex-col items-center">
+                <DownloadIcon className="h-12 w-12 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Check your Lottery</h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  Our App allows you to check Powerball or Megamillion
+                </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <ScanIcon className="h-12 w-12 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Enter Your Ticket</h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  Enter your Powerball or Megamillion ticket number.
+                </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <CheckIcon className="h-12 w-12 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Get Instant Results</h3>
+                <p className="text-gray-500 dark:text-gray-400">
+                  Know immediately how much you&apos;ve won!
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-secondary/30 h-auto">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                  Testimonials
+                </h2>
+                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                  Hear from our satisfied users.
+                </p>
+              </div>
+              <div className="grid w-full sm:grid-cols-3 gap-8 grid-cols-1">
+                <Card>
+                  <CardContent className="flex flex-col items-center">
+                    <Avatar className="mt-5">
+                      <AvatarImage src="https://avatars.githubusercontent.com/u/39103357?v=4" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-xl font-bold mt-4">Chunhunmaru</h3>
+                    <blockquote className="space-y-2">
+                      <p className="text-gray-500 dark:text-gray-400 mt-2">
+                        &ldquo;The app is super easy to use and I love the
+                        instant results!&rdquo;
+                      </p>
+                    </blockquote>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="flex flex-col items-center">
+                    <Avatar className="mt-5">
+                      <AvatarImage src="https://github.com/shadcn.png" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-xl font-bold mt-4">John Doe</h3>
+                    <blockquote className="space-y-2">
+                      <p className="text-gray-500 dark:text-gray-400 mt-2">
+                        &ldquo;The app is super easy to use and I love the
+                        instant results!&rdquo;
+                      </p>
+                    </blockquote>
+                  </CardContent>
+                </Card>
+                <Card>
+                  <CardContent className="flex flex-col items-center">
+                    <Avatar className="mt-5">
+                      <AvatarImage src="https://p19-sign.tiktokcdn-us.com/tos-useast5-avt-0068-tx/1586f20e0c2ff16572c23719bf0d5cc7~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1704783600&x-signature=7pd5SvZDuI80FQSCaHKB7FBrkI4%3D" />
+                      <AvatarFallback>AL</AvatarFallback>
+                    </Avatar>
+                    <h3 className="text-xl font-bold mt-4">AnthemLOL</h3>
+                    <p className="text-gray-500 dark:text-gray-400 mt-2">
+                      &quot;The app is super easy to use and I love the instant
+                      results!&quot;
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </>
+  );
 }
+/*
+      
+      
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center space-y-4 text-center">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                Testimonials
+              </h2>
+              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                Hear from our satisfied users.
+              </p>
+            </div>
+            <div className="grid w-full grid-cols-3 gap-8">
+              <Card>
+                <CardContent className="flex flex-col items-center">
+                  <Avatar>
+                    <AvatarImage src="/placeholder-user.jpg" />
+                    <AvatarFallback>JP</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-xl font-bold mt-4">John Doe</h3>
+                  <p className="text-gray-500 dark:text-gray-400 mt-2">
+                    &quot;The app is super easy to use and I love the instant
+                    results!&quot;
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="flex flex-col items-center">
+                  <Avatar>
+                    <AvatarImage src="/placeholder-user.jpg" />
+                    <AvatarFallback>JP</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-xl font-bold mt-4">Jane Smith</h3>
+                  <p className="text-gray-500 dark:text-gray-400 mt-2">
+                    &quot;No more waiting to check my tickets. This app is a
+                    game changer!&quot;
+                  </p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="flex flex-col items-center">
+                  <Avatar>
+                    <AvatarImage src="/placeholder-user.jpg" />
+                    <AvatarFallback>JP</AvatarFallback>
+                  </Avatar>
+                  <h3 className="text-xl font-bold mt-4">Bob Johnson</h3>
+                  <p className="text-gray-500 dark:text-gray-400 mt-2">
+                    &quot;I can&apos;t believe how easy it is to check my
+                    tickets now. Highly recommend!&quot;
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+      */
