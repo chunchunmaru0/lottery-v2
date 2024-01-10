@@ -5,9 +5,9 @@ import LotteryMainSection from "@/components/Lottery/LotteryMainSection";
 const PowerballPage = () => {
   return (
     <>
-      <LotteryHeroSection type="Powerball" />
-      <LotteryMainSection type="Powerball" />
-      <LotteryFooterSection type="Powerball" />
+      <LotteryHeroSection type="Megamillions" />
+      <LotteryMainSection type="Megamillions" />
+      <LotteryFooterSection type="Megamillions" />
     </>
   );
 };
