@@ -34,13 +34,13 @@ export default function Home() {
               <div className="space-x-4">
                 <Link
                   className={buttonVariants({ variant: "outline" })}
-                  href="#"
+                  href="/powerball"
                 >
                   Powerball
                 </Link>
                 <Link
                   className={buttonVariants({ variant: "outline" })}
-                  href="#"
+                  href="/megamillions"
                 >
                   MegaMillion
                 </Link>

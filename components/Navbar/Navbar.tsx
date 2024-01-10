@@ -28,9 +28,9 @@ export default function Navbar() {
         </Link>
         <Link
           className="text-sm font-medium hover:underline underline-offset-4 px-2"
-          href="/megamillion"
+          href="/megamillions"
         >
-          Mega Million
+          Mega Millions
         </Link>
         <Link
           className="text-sm font-medium hover:underline underline-offset-4 px-2"
