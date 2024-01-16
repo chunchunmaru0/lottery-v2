@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import { ExternalLinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { fetchLotteryData } from "@/app/(lottery)/layout";
+import { fetchLotteryData } from "@/services/fetchLotteryData";
 
 interface LotteryHeroInterface {
   type: "Powerball" | "Megamillions";
@@ -31,11 +31,13 @@ type WinningNumberResponse = {
     __v: number;
   };
 };
+
 const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
   const {
     latestPbWinningNumber,
     latestMmWinningNumber,
   }: WinningNumberResponse = await fetchLotteryData();
+  
   return (
     <section className="w-full bg-secondary  py-12 dark:bg-secondary/30 md:h-auto">
       <div className="container flex flex-wrap justify-between">

@@ -9,6 +9,14 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
+  callbacks: {
+    session({ session, token }) {
+      if (session.user && token.sub) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+  },
   adapter: PrismaAdapter(prismaDBClient),
   session: { strategy: "jwt" },
   ...authConfig,

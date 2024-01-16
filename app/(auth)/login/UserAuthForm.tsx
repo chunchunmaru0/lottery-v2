@@ -22,8 +22,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       setIsLoading(false);
     }, 3000);
   }
-  async function handleGithubLogin() {
-    await signIn("github", { callbackUrl: "/results", redirect: true });
+  function handleGithubLogin() {
+    signIn("github", { callbackUrl: "/history" });
   }
   return (
     <div className={cn("grid gap-6", className)} {...props}>
