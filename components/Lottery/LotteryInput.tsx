@@ -28,8 +28,8 @@ export type ConditionalResponse<T extends LotteryType> =
   T extends "Megamillions"
     ? LotteryCheckResponse & { megaBall: number; userMegaball: number }
     : T extends "Powerball"
-    ? LotteryCheckResponse & { powerBall: number; userPowerball: number }
-    : never;
+      ? LotteryCheckResponse & { powerBall: number; userPowerball: number }
+      : never;
 
 const LotteryInput = ({
   className,
@@ -88,7 +88,7 @@ const LotteryInput = ({
   return (
     <>
       <form onSubmit={handleSubmit} className={cn(className)}>
-        <label className="flex space-x-4 mb-4">
+        <label className="mb-4 flex space-x-4">
           {numbers.map((number, index) => (
             <input
               key={index}
@@ -99,16 +99,16 @@ const LotteryInput = ({
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 handleNumberChange(
                   index,
-                  e.target.value ? parseInt(e.target.value, 10) : null
+                  e.target.value ? parseInt(e.target.value, 10) : null,
                 )
               }
               ref={(inputRef) => (numberRefs.current[index] = inputRef)}
               className={cn(
-                "bg-white rounded-full sm:w-16 sm:h-16 w-10 h-10 flex items-center [box-shadow:0_0_20px_#8b8b8b_inset] justify-center text-2xl font-bold dark:text-primary-foreground text-center",
+                "flex h-10 w-10 items-center justify-center rounded-full bg-white text-center text-2xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16",
                 {
                   "last:bg-red-700": type === "Powerball",
                   "last:bg-yellow-500": type === "Megamillions",
-                }
+                },
               )}
             />
           ))}
@@ -117,11 +117,11 @@ const LotteryInput = ({
         <Button
           type="submit"
           className={cn(
-            "bg-gradient-to-r text-primary text-xl font-semibold dark:text-primary-foreground",
+            "bg-gradient-to-r text-xl font-semibold text-primary dark:text-primary-foreground",
             {
               "from-orange-500 to-yellow-400": type === "Megamillions",
               "from-red-500 via-rose-400 to-rose-900": type === "Powerball",
-            }
+            },
           )}
         >
           Check Your Lottery

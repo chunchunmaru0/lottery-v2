@@ -6,12 +6,7 @@ import React from "react";
 const ResultPage = async () => {
   const session = await auth();
   console.log("session", session);
-  return (
-    <div>
-          {JSON.stringify(session)}
-          
-    </div>
-  );
+  return <div>{JSON.stringify(session)}</div>;
 };
 
 export default ResultPage;

@@ -28,26 +28,26 @@ const LotteryDialog: React.FC<ILotteryDialogProps> = ({
       <DialogTrigger />
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold my-4">
+          <DialogTitle className="my-4 text-3xl font-bold">
             {data?.prize.headings}
           </DialogTitle>
-          <DialogDescription className="flex justify-center items-center py-4 flex-col">
-            <div className="flex space-x-4 mb-4 ">
+          <DialogDescription className="flex flex-col items-center justify-center py-4">
+            <div className="mb-4 flex space-x-4 ">
               {data?.userNumbers.map((number, i) => (
                 <div
                   key={`MM_${i}`}
-                  className="bg-white rounded-full  flex items-center [box-shadow:0_0_20px_#8b8b8b_inset] justify-center text-2xl font-bold dark:text-primary-foreground  sm:w-16 sm:h-16 w-10 h-10"
+                  className="flex h-10  w-10 items-center justify-center rounded-full bg-white text-2xl font-bold  [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16"
                 >
                   {number}
                 </div>
               ))}
               <div
                 className={cn(
-                  " rounded-full flex items-center [box-shadow:0_0_20px_#8b8b8b_inset] justify-center text-2xl font-bold dark:text-primary-foreground sm:w-16 sm:h-16 w-10 h-10",
+                  " flex h-10 w-10 items-center justify-center rounded-full text-2xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16",
                   {
                     "bg-red-700": type === "Powerball",
                     "bg-yellow-500": type === "Megamillions",
-                  }
+                  },
                 )}
               >
                 {type === "Powerball"
@@ -57,14 +57,14 @@ const LotteryDialog: React.FC<ILotteryDialogProps> = ({
             </div>
             {didWin && (
               <>
-                <h3 className="text-3xl font-bold mb-4">You Won:</h3>
+                <h3 className="mb-4 text-3xl font-bold">You Won:</h3>
                 <p
                   className={cn(
-                    "text-6xl font-bold mb-2 bg-gradient-to-r from-orange-400 to-yellow-700 inline-block text-transparent bg-clip-text ",
+                    "mb-2 inline-block bg-gradient-to-r from-orange-400 to-yellow-700 bg-clip-text text-6xl font-bold text-transparent ",
                     {
                       "from-orange-500 to-yellow-400": type === "Megamillions",
                       "from-red-500  to-rose-900": type === "Powerball",
-                    }
+                    },
                   )}
                 >
                   {Intl.NumberFormat("en", {
@@ -76,10 +76,10 @@ const LotteryDialog: React.FC<ILotteryDialogProps> = ({
                 </p>
               </>
             )}
-            <h3 className="text-3xl font-bold mb-4">
+            <h3 className="mb-4 text-3xl font-bold">
               Matched Numbers: {data?.prize?.matched}
             </h3>
-            <h3 className="text-3xl font-bold mb-4">
+            <h3 className="mb-4 text-3xl font-bold">
               {type === "Powerball" ? "PowerPlay" : "Megaplier"}
               {" x"}
               {data?.prize?.[type === "Powerball" ? "powerPlay" : "megaplier"]}

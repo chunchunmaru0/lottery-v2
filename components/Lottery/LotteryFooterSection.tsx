@@ -7,9 +7,9 @@ interface LotteryFooterInterface {
 
 const LotteryFooterSection: FC<LotteryFooterInterface> = ({ type }) => {
   return (
-    <section className=" mx-auto max-w-full space-y-6 pt-24 bottom-0 relative">
+    <section className=" relative bottom-0 mx-auto max-w-full space-y-6 pt-24">
       <div className="flex flex-col items-center justify-between p-24">
-        <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+        <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
           <Link
             href={"/results"}
             className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"

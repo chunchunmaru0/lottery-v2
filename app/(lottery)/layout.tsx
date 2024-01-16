@@ -1,4 +1,3 @@
-
 export async function fetchLotteryData() {
   const data = await fetch("http://localhost:3001/api/user/getLotteryHistory", {
     // cache: "no-store",

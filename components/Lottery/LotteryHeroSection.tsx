@@ -37,26 +37,26 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
     latestMmWinningNumber,
   }: WinningNumberResponse = await fetchLotteryData();
   return (
-    <section className="w-full py-12  bg-secondary dark:bg-secondary/30 md:h-auto">
+    <section className="w-full bg-secondary  py-12 dark:bg-secondary/30 md:h-auto">
       <div className="container flex flex-wrap justify-between">
         <div>
           <h2
             className={cn(
-              "text-4xl font-bold mb-6 bg-gradient-to-r inline-block text-transparent bg-clip-text",
+              "mb-6 inline-block bg-gradient-to-r bg-clip-text text-4xl font-bold text-transparent",
               {
                 "from-orange-400 to-yellow-700": type === "Megamillions",
                 "from-red-500 via-rose-400 to-rose-900": type === "Powerball",
-              }
+              },
             )}
           >
             {type}
           </h2>
-          <div className="flex space-x-4 mb-4">
+          <div className="mb-4 flex space-x-4">
             {type === "Megamillions"
               ? latestMmWinningNumber.winningNumber.map((num, i) => (
                   <div
                     key={`MM_${i}`}
-                    className="bg-white rounded-full  flex items-center [box-shadow:0_0_20px_#8b8b8b_inset] justify-center text-2xl font-bold dark:text-primary-foreground  sm:w-16 sm:h-16 w-10 h-10"
+                    className="flex h-10  w-10 items-center justify-center rounded-full bg-white text-2xl font-bold  [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16"
                   >
                     {num}
                   </div>
@@ -64,18 +64,18 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
               : latestPbWinningNumber.winningNumber.map((num, i) => (
                   <div
                     key={`PB_${i}`}
-                    className="bg-white rounded-full  flex items-center [box-shadow:0_0_20px_#8b8b8b_inset] justify-center text-2xl font-bold dark:text-primary-foreground  sm:w-16 sm:h-16 w-10 h-10"
+                    className="flex h-10  w-10 items-center justify-center rounded-full bg-white text-2xl font-bold  [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16"
                   >
                     {num}
                   </div>
                 ))}
             <div
               className={cn(
-                " rounded-full flex items-center [box-shadow:0_0_20px_#8b8b8b_inset] justify-center text-2xl font-bold dark:text-primary-foreground sm:w-16 sm:h-16 w-10 h-10",
+                " flex h-10 w-10 items-center justify-center rounded-full text-2xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16",
                 {
                   "bg-red-700": type === "Powerball",
                   "bg-yellow-500": type === "Megamillions",
-                }
+                },
               )}
             >
               {type === "Megamillions"
@@ -83,7 +83,7 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
                 : latestPbWinningNumber.powerball}
             </div>
           </div>
-          <div className="text-sm mb-2">
+          <div className="mb-2 text-sm">
             {type === "Megamillions"
               ? new Date(latestMmWinningNumber.drawDate).toLocaleString(
                   "en-US",
@@ -91,7 +91,7 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
                     day: "numeric",
                     month: "short",
                     weekday: "long",
-                  }
+                  },
                 ) + ` MEGAPLIER x${latestMmWinningNumber.megaplier}`
               : new Date(latestPbWinningNumber.drawDate).toLocaleString(
                   "en-US",
@@ -99,11 +99,11 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
                     day: "numeric",
                     month: "short",
                     weekday: "long",
-                  }
+                  },
                 ) + ` POWERPLAY x${latestPbWinningNumber.powerplay}`}
           </div>
-          <div className="flex flex-wrap md:space-x-4 md:py-12 py-8 gap-4">
-            <Button variant="outline" asChild className="pr-12 justify-end">
+          <div className="flex flex-wrap gap-4 py-8 md:space-x-4 md:py-12">
+            <Button variant="outline" asChild className="justify-end pr-12">
               <a href="https://youtube.com" target="_blank" className="">
                 Watch the Draw <ExternalLinkIcon size={18} className="" />
               </a>
@@ -112,15 +112,15 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
           </div>
         </div>
 
-        <div className="bg-muted-foreground/30 rounded-lg p-6 max-w-sm">
-          <h3 className="text-3xl font-bold mb-4">Next Estimated Jackpot</h3>
+        <div className="max-w-sm rounded-lg bg-muted-foreground/30 p-6">
+          <h3 className="mb-4 text-3xl font-bold">Next Estimated Jackpot</h3>
           <p
             className={cn(
-              "text-6xl font-bold mb-2 bg-gradient-to-r from-orange-400 to-yellow-700 inline-block text-transparent bg-clip-text ",
+              "mb-2 inline-block bg-gradient-to-r from-orange-400 to-yellow-700 bg-clip-text text-6xl font-bold text-transparent ",
               {
                 "from-orange-500 to-yellow-400": type === "Megamillions",
                 "from-red-500  to-rose-900": type === "Powerball",
-              }
+              },
             )}
           >
             {/* <span className="bg-gradient-to-r from-orange-500 via-purple-500 to-yellow-500 inline-block text-transparent bg-clip-text"> */}
@@ -137,28 +137,28 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
             }).format(
               type === "Megamillions"
                 ? latestMmWinningNumber.jackpot
-                : latestPbWinningNumber.jackpot
+                : latestPbWinningNumber.jackpot,
             )}
 
             {/* </span> */}
           </p>
           {/* <p className="text-sm mb-4">CASH OPTION: $79.9 MILLION</p> */}
-          <p className="text-lg mb-4 py-4">
+          <p className="mb-4 py-4 text-lg">
             Next Drawing:
             <br />
             <span
               className={cn(
-                "bg-gradient-to-r inline-block text-transparent bg-clip-text",
+                "inline-block bg-gradient-to-r bg-clip-text text-transparent",
                 {
                   "from-orange-500 to-yellow-400": type === "Megamillions",
                   "from-red-500 via-rose-400 to-rose-900": type === "Powerball",
-                }
+                },
               )}
             >
               {new Date(
                 type === "Megamillions"
                   ? latestMmWinningNumber.nextDrawDate
-                  : latestPbWinningNumber.nextDrawDate
+                  : latestPbWinningNumber.nextDrawDate,
               ).toLocaleString("en-US", {
                 timeZoneName: "short",
                 day: "numeric",
