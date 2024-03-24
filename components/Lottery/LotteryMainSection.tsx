@@ -1,8 +1,9 @@
 import React from "react";
 import LotteryInput from "./LotteryInput";
+import { LotteryType } from "./types";
 
 interface LotteryMainInterface {
-  type: "Powerball" | "Megamillions";
+  type: LotteryType;
 }
 const LotteryMainSection: React.FC<LotteryMainInterface> = ({ type }) => {
   return (

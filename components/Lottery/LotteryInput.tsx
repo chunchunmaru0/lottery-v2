@@ -3,26 +3,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import React, { useState, useRef, FormEvent, ChangeEvent } from "react";
 import LotteryDialog from "./LotteryDialog";
-
-export interface LotteryCheckResponse {
-  winningNumbers: number[];
-  userNumbers: number[];
-  userMegaBall?: number;
-  userPowerball?: number;
-  prize: Prize;
-}
-
-export interface Prize {
-  result: boolean;
-  headings: string;
-  matched: number;
-  isMegaplierMatched: boolean;
-  powerPlay?: number;
-  megaplier?: number;
-  win: string;
-}
-
-export type LotteryType = "Powerball" | "Megamillions";
+import { LotteryCheckResponse, LotteryType } from "./types";
+import { useSession } from "next-auth/react";
+import { toast } from "sonner";
 
 export type ConditionalResponse<T extends LotteryType> =
   T extends "Megamillions"
@@ -78,6 +61,10 @@ const LotteryInput = ({
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const lotteryNum = numbers.join(",");
+    if (numbers.includes(null))
+      return toast(
+        "Invalid Lottery Number, Please enter your full Lottery Digits",
+      );
     const apiUrl = `${BASE_URL}/lottery/${type}?userNumber=${lotteryNum}`;
     const res = await fetch(apiUrl, { method: "POST" });
     setResponseData(await res.json());
@@ -85,6 +72,17 @@ const LotteryInput = ({
     setNumbers([null, null, null, null, null, null]);
   };
 
+  const session = useSession();
+  const isLoggedIn = session?.status === "authenticated";
+
+  const handleStore = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (numbers.includes(null))
+      return toast(
+        "Invalid Lottery Number, Please enter your full Lottery Digits",
+      );
+    toast("Saved, We will notify you on every new Draw");
+  };
   return (
     <>
       <form onSubmit={handleSubmit} className={cn(className)}>
@@ -104,7 +102,7 @@ const LotteryInput = ({
               }
               ref={(inputRef) => (numberRefs.current[index] = inputRef)}
               className={cn(
-                "flex h-10 w-10 items-center justify-center rounded-full bg-white text-center text-2xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16",
+                "flex h-10 w-10 items-center justify-center rounded-full bg-white text-center text-2xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset] focus:scale-110 dark:text-primary-foreground sm:h-16 sm:w-16",
                 {
                   "last:bg-red-700": type === "Powerball",
                   "last:bg-yellow-500": type === "Megamillions",
@@ -114,18 +112,35 @@ const LotteryInput = ({
           ))}
         </label>
 
-        <Button
-          type="submit"
-          className={cn(
-            "bg-gradient-to-r text-xl font-semibold text-primary dark:text-primary-foreground",
-            {
-              "from-orange-500 to-yellow-400": type === "Megamillions",
-              "from-red-500 via-rose-400 to-rose-900": type === "Powerball",
-            },
+        <div>
+          <Button
+            type="submit"
+            className={cn(
+              "mx-2 bg-gradient-to-r text-xl font-semibold text-primary dark:text-primary-foreground",
+              {
+                "from-orange-500 to-yellow-400": type === "Megamillions",
+                "from-red-500 via-rose-400 to-rose-900": type === "Powerball",
+              },
+            )}
+          >
+            Check Your Lottery
+          </Button>
+          {true && (
+            <Button
+              variant={"outline"}
+              className={cn(
+                "mx-2 text-clip bg-gradient-to-r bg-clip-text text-xl  font-semibold text-transparent  dark:border-white",
+                {
+                  "from-orange-500 to-yellow-400": type === "Megamillions",
+                  "from-red-500 via-rose-400 to-rose-900": type === "Powerball",
+                },
+              )}
+              onClick={handleStore}
+            >
+              Check Your Lottery
+            </Button>
           )}
-        >
-          Check Your Lottery
-        </Button>
+        </div>
       </form>
 
       <LotteryDialog

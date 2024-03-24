@@ -3,9 +3,11 @@ import { Button } from "../ui/button";
 import { ExternalLinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { fetchLotteryData } from "@/services/fetchLotteryData";
+import { LotteryType } from "./types";
+import LotteryBalls from "./LotteryBalls";
 
 interface LotteryHeroInterface {
-  type: "Powerball" | "Megamillions";
+  type: LotteryType;
 }
 type WinningNumberResponse = {
   latestMmWinningNumber: {
@@ -37,7 +39,7 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
     latestPbWinningNumber,
     latestMmWinningNumber,
   }: WinningNumberResponse = await fetchLotteryData();
-  
+
   return (
     <section className="w-full bg-secondary  py-12 dark:bg-secondary/30 md:h-auto">
       <div className="container flex flex-wrap justify-between">
@@ -53,7 +55,7 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
           >
             {type}
           </h2>
-          <div className="mb-4 flex space-x-4">
+          {/* <div className="mb-4 flex space-x-4">
             {type === "Megamillions"
               ? latestMmWinningNumber.winningNumber.map((num, i) => (
                   <div
@@ -84,7 +86,12 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
                 ? latestMmWinningNumber.megaball
                 : latestPbWinningNumber.powerball}
             </div>
-          </div>
+          </div> */}
+          <LotteryBalls
+            type={type}
+            latestMmWinningNumber={latestMmWinningNumber}
+            latestPbWinningNumber={latestPbWinningNumber}
+          />
           <div className="mb-2 text-sm">
             {type === "Megamillions"
               ? new Date(latestMmWinningNumber.drawDate).toLocaleString(

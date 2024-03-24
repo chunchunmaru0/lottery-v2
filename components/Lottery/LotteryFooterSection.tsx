@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React, { FC } from "react";
+import { LotteryType } from "./types";
 
 interface LotteryFooterInterface {
-  type: "Powerball" | "Megamillions";
+  type: LotteryType;
 }
 
 const LotteryFooterSection: FC<LotteryFooterInterface> = ({ type }) => {
@@ -21,7 +22,7 @@ const LotteryFooterSection: FC<LotteryFooterInterface> = ({ type }) => {
               </span>
             </h2>
             <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Find in-depth information about Next.js features and API.
+              Check the InDepth Results about the Lotteries.
             </p>
           </Link>
           <Link
@@ -35,7 +36,9 @@ const LotteryFooterSection: FC<LotteryFooterInterface> = ({ type }) => {
               </span>
             </h2>
             <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Find in-depth information about Next.js features and API.
+              {type === "Megamillions"
+                ? "Check your Powerball Lottery"
+                : "Check your MegaMillion Lottery"}
             </p>
           </Link>
           <Link
@@ -49,7 +52,8 @@ const LotteryFooterSection: FC<LotteryFooterInterface> = ({ type }) => {
               </span>
             </h2>
             <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Find in-depth information about Next.js features and API.
+              Login to get notified on your stored lottery, and acess other
+              features.
             </p>
           </Link>
           <Link
@@ -63,7 +67,7 @@ const LotteryFooterSection: FC<LotteryFooterInterface> = ({ type }) => {
               </span>
             </h2>
             <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-              Find in-depth information about Next.js features and API.
+              Back to Home
             </p>
           </Link>
         </div>

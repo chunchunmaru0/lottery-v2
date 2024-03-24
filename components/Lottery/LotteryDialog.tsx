@@ -8,7 +8,8 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { cn } from "@/lib/utils";
-import { ConditionalResponse, LotteryType } from "./LotteryInput";
+import { ConditionalResponse } from "./LotteryInput";
+import { LotteryType } from "./types";
 
 interface ILotteryDialogProps {
   open: boolean;
