@@ -3,10 +3,10 @@ export interface WinningMegaMillions {
   drawDate: Date;
   nextDrawDate: Date;
   jackpot: number;
-  allNumber: string[];
-  winningNumber: string[];
-  megaball: string;
-  megaplier: string;
+  allNumber: number[];
+  winningNumber: number[];
+  megaball: number;
+  megaplier: number;
 }
 
 export interface WinningPowerball {
@@ -14,10 +14,10 @@ export interface WinningPowerball {
   drawDate: Date;
   nextDrawDate: Date;
   jackpot: number;
-  allNumber: string[];
-  winningNumber: string[];
-  powerball: string;
-  powerplay: string;
+  allNumber: number[];
+  winningNumber: number[];
+  powerball: number;
+  powerplay: number;
 }
 
 export interface CompareMegaMilNumbers {

@@ -117,13 +117,12 @@ export function comparePowerballNumbers(
 ) {
   let matchedNumbers = 0;
   for (const number of userNumbers) {
-    if (winningPowerballNumbers.winningNumber.includes(number.toString())) {
+    if (winningPowerballNumbers.winningNumber.includes(number)) {
       matchedNumbers++;
     }
   }
 
-  const hasPowerball =
-    userPowerball.toString() === winningPowerballNumbers.powerball;
+  const hasPowerball = userPowerball === winningPowerballNumbers.powerball;
 
   return {
     matchedNumbers: matchedNumbers,

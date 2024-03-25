@@ -54,7 +54,7 @@ export async function GET(request: NextRequest) {
   const prize = calculateMegaMillion(
     matchedNumbers,
     hasMegaBall,
-    parseInt(winningMegaMillions.megaplier),
+    winningMegaMillions.megaplier,
     winningMegaMillions.jackpot,
   );
 

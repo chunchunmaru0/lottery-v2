@@ -117,11 +117,11 @@ export function compareMegaMilNumbers(
 ) {
   let matchedNumbers = 0;
   for (const number of userNumbers) {
-    if (winningMegaMillions.winningNumber.includes(number.toString())) {
+    if (winningMegaMillions.winningNumber.includes(number)) {
       matchedNumbers++;
     }
   }
-  const hasMegaBall = userMegaBall.toString() === winningMegaMillions.megaball;
+  const hasMegaBall = userMegaBall === winningMegaMillions.megaball;
 
   return {
     matchedNumbers: matchedNumbers,

@@ -61,10 +61,10 @@ model MegamillionResult {
   drawDate      DateTime @unique
   nextDrawDate  DateTime @unique
   jackpot       Float
-  allNumber     String[]
-  winningNumber String[] @unique
-  megaball      String
-  megaplier     String
+  allNumber     Int[]
+  winningNumber Int[] @unique
+  megaball      Int
+  megaplier     Int
 }
 
 // Define the PowerballResult model
@@ -73,8 +73,8 @@ model PowerballResult {
   drawDate      DateTime @unique
   nextDrawDate  DateTime @unique
   jackpot       Float
-  allNumber     String[]
-  winningNumber String[] @unique
-  powerball     String
-  powerplay     String
+  allNumber     Int[]
+  winningNumber Int[] @unique
+  powerball     Int
+  powerplay     Int
 }

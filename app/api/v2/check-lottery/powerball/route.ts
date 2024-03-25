@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
   const prize = calculatePowerball(
     matchedNumbers,
     hasPowerball,
-    parseInt(winningPowerballNumbers.powerball),
+    winningPowerballNumbers.powerball,
     winningPowerballNumbers.jackpot,
   );
 
