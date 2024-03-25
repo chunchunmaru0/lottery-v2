@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 export function ModeToggle() {
   const router = useRouter();
   const { setTheme } = useTheme();
-  const handleTheme = (theme) => {
+  const handleTheme = (theme: string) => {
     setTheme(theme);
     router.refresh();
   };
