@@ -3,7 +3,7 @@ import { WinningNumberResponse } from "@/components/Lottery/types";
 import { fetchLotteryDataFromDB } from "@/services/fetchLotteryData";
 import Result from "./Result";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600; // revalidate at most every hour
 
 const ResultPage = async () => {
   const {

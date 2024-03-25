@@ -24,6 +24,7 @@ const LotteryDialog: React.FC<ILotteryDialogProps> = ({
   type,
 }) => {
   const didWin = data?.prize?.result;
+  console.log("data", data);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger />

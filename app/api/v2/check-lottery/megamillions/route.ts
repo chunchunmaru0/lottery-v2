@@ -5,9 +5,6 @@ import {
 } from "@/lib/server/helper";
 import { NextResponse, type NextRequest } from "next/server";
 
-export const dynamic = "force-dynamic";
-
-
 export async function POST(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("userNumber");
@@ -63,9 +60,9 @@ export async function POST(request: NextRequest) {
 
   return Response.json({
     winningNumbers: winningMegaMillions.winningNumber,
-    powerball: winningMegaMillions.megaball,
+    megaball: winningMegaMillions.megaball,
     userNumbers: userNumbers.slice(0, 5),
-    userPowerball: userNumbers[5],
+    userMegaBall: userNumbers[5],
     prize,
   });
 }

@@ -90,14 +90,29 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
             latestMmWinningNumber={latestMmWinningNumber}
             latestPbWinningNumber={latestPbWinningNumber}
           />
+          <Button
+            variant={"ghost"}
+            className={cn(
+              "mx-auto -mb-2 mt-2 w-full animate-bounce items-center justify-center bg-gradient-to-r bg-clip-text  font-bold text-transparent",
+              {
+                "from-orange-400 to-yellow-700": type === "Megamillions",
+                "from-red-500 via-rose-400 to-rose-900": type === "Powerball",
+              },
+            )}
+            asChild
+          >
+            <a href="#main">Get Started &darr;</a>
+          </Button>
 
-          <div className="flex flex-wrap gap-4 py-8 md:space-x-4 md:py-12">
-            <Button variant="outline" asChild className="justify-end pr-12">
-              <a href="https://youtube.com" target="_blank" className="">
-                Watch the Draw <ExternalLinkIcon size={18} className="" />
+          <div className="flex flex-wrap gap-4 py-6 md:space-x-4 md:py-12">
+            <Button variant="outline" asChild size={null} className="p-2">
+              <a href="https://youtube.com" target="_blank">
+                Watch the Draw <ExternalLinkIcon size={18} />
               </a>
             </Button>
-            <Button variant="outline">Past Winning Numbers</Button>
+            <Button variant="outline" size={null} className="p-2">
+              Past Winning Numbers
+            </Button>
           </div>
         </div>
 
