@@ -3,7 +3,6 @@ import { Button } from "../ui/button";
 import { ExternalLinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
-  fetchLotteryData,
   fetchLotteryDataFromDB,
 } from "@/services/fetchLotteryData";
 import { LotteryType } from "./types";

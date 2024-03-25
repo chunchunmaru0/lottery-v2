@@ -1,13 +1,13 @@
 import { WinningNumberResponse } from "@/components/Lottery/types";
 
-import { fetchLotteryData } from "@/services/fetchLotteryData";
+import { fetchLotteryDataFromDB } from "@/services/fetchLotteryData";
 import Result from "./Result";
 
 const ResultPage = async () => {
   const {
     latestPbWinningNumber,
     latestMmWinningNumber,
-  }: WinningNumberResponse = await fetchLotteryData();
+  }: WinningNumberResponse = await fetchLotteryDataFromDB();
   return (
     <section className="container">
       <Result
