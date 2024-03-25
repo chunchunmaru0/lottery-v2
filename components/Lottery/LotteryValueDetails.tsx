@@ -5,16 +5,21 @@ interface ILotteryBalls {
   type: LotteryType;
   latestMmWinningNumber?: WinningNumberResponse["latestMmWinningNumber"];
   latestPbWinningNumber?: WinningNumberResponse["latestPbWinningNumber"];
+  heading?: string;
+  LotteryBalls?: React.ReactNode;
 }
 
 const LotteryValueDetails: React.FC<ILotteryBalls> = ({
   type,
   latestMmWinningNumber,
   latestPbWinningNumber,
+  heading,
+  LotteryBalls,
 }) => {
   return (
     <div className="max-w-sm rounded-lg bg-muted-foreground/30 p-6">
-      <h3 className="mb-4 text-3xl font-bold">Next Estimated Jackpot</h3>
+      <h3 className="mb-4 text-3xl font-bold">{heading}</h3>
+      {LotteryBalls && LotteryBalls}
       <p
         className={cn(
           "mb-2 inline-block bg-gradient-to-r from-orange-400 to-yellow-700 bg-clip-text text-6xl font-bold text-transparent ",

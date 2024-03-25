@@ -1,10 +1,21 @@
-import { auth } from "@/auth";
-import { Button } from "@/components/ui/button";
-import { signOut } from "next-auth/react";
-import React from "react";
+import { WinningNumberResponse } from "@/components/Lottery/types";
+
+import { fetchLotteryData } from "@/services/fetchLotteryData";
+import Result from "./Result";
 
 const ResultPage = async () => {
-  return <div>Result PAGE</div>;
+  const {
+    latestPbWinningNumber,
+    latestMmWinningNumber,
+  }: WinningNumberResponse = await fetchLotteryData();
+  return (
+    <section className="container">
+      <Result
+        latestMmWinningNumber={latestMmWinningNumber}
+        latestPbWinningNumber={latestPbWinningNumber}
+      />
+    </section>
+  );
 };
 
 export default ResultPage;

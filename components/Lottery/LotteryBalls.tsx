@@ -12,38 +12,57 @@ const LotteryBalls: React.FC<ILotteryBalls> = ({
   type,
 }) => {
   return (
-    <div className="mb-4 flex space-x-4">
-      {type === "Megamillions"
-        ? latestMmWinningNumber?.winningNumber?.map((num, i) => (
-            <div
-              key={`MM_${i}`}
-              className="flex h-10  w-10 items-center justify-center rounded-full bg-white text-2xl font-bold  [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16"
-            >
-              {num}
-            </div>
-          ))
-        : latestPbWinningNumber?.winningNumber?.map((num, i) => (
-            <div
-              key={`PB_${i}`}
-              className="flex h-10  w-10 items-center justify-center rounded-full bg-white text-2xl font-bold  [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16"
-            >
-              {num}
-            </div>
-          ))}
-      <div
-        className={cn(
-          " flex h-10 w-10 items-center justify-center rounded-full text-2xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16",
-          {
-            "bg-red-700": type === "Powerball",
-            "bg-yellow-500": type === "Megamillions",
-          },
-        )}
-      >
+    <>
+      <div className="mb-4 flex space-x-4">
         {type === "Megamillions"
-          ? latestMmWinningNumber?.megaball
-          : latestPbWinningNumber?.powerball}
+          ? latestMmWinningNumber?.winningNumber?.map((num, i) => (
+              <div
+                key={`MM_${i}`}
+                className="flex size-8 items-center justify-center rounded-full bg-white text-xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset]  dark:text-primary-foreground md:size-16 md:text-2xl"
+              >
+                {num}
+              </div>
+            ))
+          : latestPbWinningNumber?.winningNumber?.map((num, i) => (
+              <div
+                key={`PB_${i}`}
+                className="flex size-8 items-center justify-center rounded-full bg-white text-xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset]  dark:text-primary-foreground md:size-16 md:text-2xl"
+              >
+                {num}
+              </div>
+            ))}
+        <div
+          className={cn(
+            " flex size-8 items-center justify-center rounded-full text-xl font-bold [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground md:size-16 md:text-2xl",
+            {
+              "bg-red-700": type === "Powerball",
+              "bg-yellow-500": type === "Megamillions",
+            },
+          )}
+        >
+          {type === "Megamillions"
+            ? latestMmWinningNumber?.megaball
+            : latestPbWinningNumber?.powerball}
+        </div>
       </div>
-    </div>
+      <div className="mb-2 text-sm">
+        {type === "Megamillions"
+          ? latestMmWinningNumber
+            ? new Date(latestMmWinningNumber.drawDate).toLocaleString("en-US", {
+                day: "numeric",
+                month: "short",
+                weekday: "long",
+              }) + ` MEGAPLIER x${latestMmWinningNumber.megaplier}`
+            : null
+          : latestPbWinningNumber
+            ? new Date(latestPbWinningNumber.drawDate).toLocaleString("en-US", {
+                day: "numeric",
+                month: "short",
+                weekday: "long",
+              }) + ` POWERPLAY x${latestPbWinningNumber.powerplay}`
+            : null}
+      </div>
+    </>
   );
 };
 

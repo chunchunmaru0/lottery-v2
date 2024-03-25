@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { fetchLotteryData } from "@/services/fetchLotteryData";
 import { LotteryType } from "./types";
 import LotteryBalls from "./LotteryBalls";
+import LotteryValueDetails from "./LotteryValueDetails";
 
 interface LotteryHeroInterface {
   type: LotteryType;
@@ -92,25 +93,7 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
             latestMmWinningNumber={latestMmWinningNumber}
             latestPbWinningNumber={latestPbWinningNumber}
           />
-          <div className="mb-2 text-sm">
-            {type === "Megamillions"
-              ? new Date(latestMmWinningNumber.drawDate).toLocaleString(
-                  "en-US",
-                  {
-                    day: "numeric",
-                    month: "short",
-                    weekday: "long",
-                  },
-                ) + ` MEGAPLIER x${latestMmWinningNumber.megaplier}`
-              : new Date(latestPbWinningNumber.drawDate).toLocaleString(
-                  "en-US",
-                  {
-                    day: "numeric",
-                    month: "short",
-                    weekday: "long",
-                  },
-                ) + ` POWERPLAY x${latestPbWinningNumber.powerplay}`}
-          </div>
+
           <div className="flex flex-wrap gap-4 py-8 md:space-x-4 md:py-12">
             <Button variant="outline" asChild className="justify-end pr-12">
               <a href="https://youtube.com" target="_blank" className="">
@@ -178,6 +161,12 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
             </span>
           </p>
         </div>
+        <LotteryValueDetails
+          type={type}
+          heading="Next Estimated Jackpot"
+          latestMmWinningNumber={latestMmWinningNumber}
+          latestPbWinningNumber={latestPbWinningNumber}
+        />
       </div>
     </section>
   );
