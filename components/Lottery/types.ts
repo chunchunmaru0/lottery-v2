@@ -1,5 +1,5 @@
 export type LotteryType = "Powerball" | "Megamillions";
-export type WinningNumberResponse = {
+export type WinningNumberAPIResponse = {
   latestMmWinningNumber: {
     _id: string;
     drawDate: string;
@@ -21,6 +21,28 @@ export type WinningNumberResponse = {
     powerball: number;
     powerplay: number;
     __v: number;
+  };
+};
+export type WinningNumberResponse = {
+  latestMmWinningNumber: {
+    id: string;
+    drawDate: Date;
+    nextDrawDate: Date;
+    jackpot: number;
+    allNumber: string[];
+    winningNumber: string[];
+    megaball: string;
+    megaplier: string;
+  };
+  latestPbWinningNumber: {
+    id: string;
+    drawDate: Date;
+    nextDrawDate: Date;
+    jackpot: number;
+    allNumber: string[];
+    winningNumber: string[];
+    powerball: string;
+    powerplay: string;
   };
 };
 

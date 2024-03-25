@@ -2,7 +2,10 @@ import React from "react";
 import { Button } from "../ui/button";
 import { ExternalLinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { fetchLotteryData } from "@/services/fetchLotteryData";
+import {
+  fetchLotteryData,
+  fetchLotteryDataFromDB,
+} from "@/services/fetchLotteryData";
 import { LotteryType } from "./types";
 import LotteryBalls from "./LotteryBalls";
 import LotteryValueDetails from "./LotteryValueDetails";
@@ -10,7 +13,7 @@ import LotteryValueDetails from "./LotteryValueDetails";
 interface LotteryHeroInterface {
   type: LotteryType;
 }
-type WinningNumberResponse = {
+type WinningNumberAPIResponse = {
   latestMmWinningNumber: {
     _id: string;
     drawDate: string;
@@ -36,11 +39,9 @@ type WinningNumberResponse = {
 };
 
 const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
-  const {
-    latestPbWinningNumber,
-    latestMmWinningNumber,
-  }: WinningNumberResponse = await fetchLotteryData();
-
+  const { latestMmWinningNumber, latestPbWinningNumber } =
+    await fetchLotteryDataFromDB();
+  console.log("typeof", latestMmWinningNumber);
   return (
     <section className="w-full bg-secondary  py-12 dark:bg-secondary/30 md:h-auto">
       <div className="container flex flex-wrap justify-between">
@@ -128,8 +129,8 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
               notation: "compact",
             }).format(
               type === "Megamillions"
-                ? latestMmWinningNumber.jackpot
-                : latestPbWinningNumber.jackpot,
+                ? latestMmWinningNumber?.jackpot
+                : latestPbWinningNumber?.jackpot,
             )}
 
             {/* </span> */}
@@ -149,8 +150,8 @@ const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
             >
               {new Date(
                 type === "Megamillions"
-                  ? latestMmWinningNumber.nextDrawDate
-                  : latestPbWinningNumber.nextDrawDate,
+                  ? latestMmWinningNumber?.nextDrawDate
+                  : latestPbWinningNumber?.nextDrawDate,
               ).toLocaleString("en-US", {
                 timeZoneName: "short",
                 day: "numeric",

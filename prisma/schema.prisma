@@ -55,3 +55,26 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model MegamillionResult {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  drawDate      DateTime @unique
+  nextDrawDate  DateTime @unique
+  jackpot       Float
+  allNumber     String[]
+  winningNumber String[] @unique
+  megaball      String
+  megaplier     String
+}
+
+// Define the PowerballResult model
+model PowerballResult {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  drawDate      DateTime @unique
+  nextDrawDate  DateTime @unique
+  jackpot       Float
+  allNumber     String[]
+  winningNumber String[] @unique
+  powerball     String
+  powerplay     String
+}
