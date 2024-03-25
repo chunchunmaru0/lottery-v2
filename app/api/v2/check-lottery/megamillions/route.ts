@@ -5,6 +5,9 @@ import {
 } from "@/lib/server/helper";
 import { NextResponse, type NextRequest } from "next/server";
 
+export const dynamic = "force-dynamic";
+
+
 export async function POST(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("userNumber");

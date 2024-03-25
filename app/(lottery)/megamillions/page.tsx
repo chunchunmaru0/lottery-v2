@@ -2,7 +2,8 @@ import LotteryFooterSection from "@/components/Lottery/LotteryFooterSection";
 import LotteryHeroSection from "@/components/Lottery/LotteryHeroSection";
 import LotteryMainSection from "@/components/Lottery/LotteryMainSection";
 
-const PowerballPage = () => {
+export const dynamic = "force-dynamic";
+const MegamillionsPage = () => {
   return (
     <>
       <LotteryHeroSection type="Megamillions" />
@@ -12,4 +13,4 @@ const PowerballPage = () => {
   );
 };
 
-export default PowerballPage;
+export default MegamillionsPage;

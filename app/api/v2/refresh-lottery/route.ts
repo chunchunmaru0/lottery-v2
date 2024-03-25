@@ -1,7 +1,8 @@
 import { prismaDBClient as prisma } from "@/lib/db";
 import { getLottery } from "@/lib/server/getLottery";
 
-// export const dynamic = "force-dynamic"; // defaults to auto
+export const dynamic = "force-dynamic"; // defaults to auto
+
 export async function GET(request: Request) {
   try {
     const { MMpayload, PBpayload } = await getLottery();
