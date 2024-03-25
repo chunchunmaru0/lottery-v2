@@ -37,7 +37,6 @@ const LotteryInput = ({
   const numberRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const handleNumberChange = (index: number, value: number | null) => {
-    console.log(value);
     if (Number.isNaN(value)) {
       return;
     }
@@ -65,16 +64,20 @@ const LotteryInput = ({
       return toast(
         "Invalid Lottery Number, Please enter your full Lottery Digits",
       );
-    const apiUrl = `${BASE_URL}/lottery/${type}?userNumber=${lotteryNum}`;
-    const res = await fetch(apiUrl, { method: "POST" });
-    setResponseData(await res.json());
+    // const apiUrl = `${BASE_URL}/lottery/${type}?userNumber=${lotteryNum}`;
+    const apiUrl = `/api/v2/check-lottery/${type.toLowerCase()}?userNumber=${lotteryNum}`;
+    try {
+      const res = await fetch(apiUrl, { method: "POST" });
+      setResponseData(await res.json());
+    } catch (error) {
+      console.log(error);
+    }
     setOpen(true);
     setNumbers([null, null, null, null, null, null]);
   };
 
   const session = useSession();
   const isLoggedIn = session?.status === "authenticated";
-
   const handleStore = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (numbers.includes(null))
@@ -125,7 +128,7 @@ const LotteryInput = ({
           >
             Check Your Lottery
           </Button>
-          {true && (
+          {isLoggedIn && (
             <Button
               variant={"outline"}
               className={cn(

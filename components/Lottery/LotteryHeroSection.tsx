@@ -41,7 +41,6 @@ type WinningNumberAPIResponse = {
 const LotteryHeroSection = async ({ type }: LotteryHeroInterface) => {
   const { latestMmWinningNumber, latestPbWinningNumber } =
     await fetchLotteryDataFromDB();
-  console.log("typeof", latestMmWinningNumber);
   return (
     <section className="w-full bg-secondary  py-12 dark:bg-secondary/30 md:h-auto">
       <div className="container flex flex-wrap justify-between">

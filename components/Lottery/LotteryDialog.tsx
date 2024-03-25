@@ -30,11 +30,11 @@ const LotteryDialog: React.FC<ILotteryDialogProps> = ({
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="my-4 text-3xl font-bold">
-            {data?.prize.headings}
+            {data?.prize?.headings}
           </DialogTitle>
           <DialogDescription className="flex flex-col items-center justify-center py-4">
             <div className="mb-4 flex space-x-4 ">
-              {data?.userNumbers.map((number, i) => (
+              {data?.userNumbers?.map((number, i) => (
                 <div
                   key={`MM_${i}`}
                   className="flex h-10  w-10 items-center justify-center rounded-full bg-white text-2xl font-bold  [box-shadow:0_0_20px_#8b8b8b_inset] dark:text-primary-foreground sm:h-16 sm:w-16"

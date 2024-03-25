@@ -12,7 +12,7 @@ export async function fetchLotteryData() {
     const response = await data.json();
     return response;
   } catch (error) {
-    console.log("Error Fetching");
+    console.log("Error Fetching", error);
     return {
       error: true,
       latestPbWinningNumber: {

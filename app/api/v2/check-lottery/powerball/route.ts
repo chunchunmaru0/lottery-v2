@@ -6,7 +6,7 @@ import {
 
 import { NextResponse, type NextRequest } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const query = searchParams.get("userNumber");
 
@@ -59,5 +59,11 @@ export async function GET(request: NextRequest) {
     winningPowerballNumbers.jackpot,
   );
 
-  return Response.json(prize);
+  return Response.json({
+    winningNumbers: winningPowerballNumbers.winningNumber,
+    powerball: winningPowerballNumbers.powerball,
+    userNumbers: userNumbers.slice(0, 5),
+    userPowerball: userNumbers[5],
+    prize,
+  });
 }

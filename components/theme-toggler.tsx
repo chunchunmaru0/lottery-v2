@@ -17,7 +17,6 @@ export function ModeToggle() {
   const router = useRouter();
   const { setTheme } = useTheme();
   const handleTheme = (theme) => {
-    console.log("here", theme);
     setTheme(theme);
     router.refresh();
   };

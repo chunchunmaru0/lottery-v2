@@ -5,7 +5,6 @@ import { getLottery } from "@/lib/server/getLottery";
 export async function GET(request: Request) {
   try {
     const { MMpayload, PBpayload } = await getLottery();
-    console.log("response", { MMpayload, PBpayload });
 
     const existingMegamillionResult = await prisma.megamillionResult.findUnique(
       {
