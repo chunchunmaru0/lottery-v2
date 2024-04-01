@@ -1,9 +1,6 @@
 {
   "crons": [
-    {
-      "path": "/api/v2/refresh-lottery",
-      "schedule": "0 * * * *"
-    },
+
     {
       "path": "/api/send?lotteryType=Megamillions",
       "schedule": "15 3 * * 3,6"
