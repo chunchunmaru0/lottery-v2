@@ -1,20 +1,24 @@
-import { WinningNumberResponse } from "@/components/Lottery/types";
+import {
+  AllWinningNumberResponse,
+  WinningNumberResponse,
+} from "@/components/Lottery/types";
 
-import { fetchLotteryDataFromDB } from "@/services/fetchLotteryData";
+import {
+  fetchAllLotteryDataFromDB,
+  fetchLotteryDataFromDB,
+} from "@/services/fetchLotteryData";
 import Result from "./Result";
 
 export const revalidate = 3600; // revalidate at most every hour
 
 const ResultPage = async () => {
-  const {
-    latestPbWinningNumber,
-    latestMmWinningNumber,
-  }: WinningNumberResponse = await fetchLotteryDataFromDB();
+  const { allMegamillionNumber, allPowerballNumber }: AllWinningNumberResponse =
+    await fetchAllLotteryDataFromDB();
   return (
     <section className="container">
       <Result
-        latestMmWinningNumber={latestMmWinningNumber}
-        latestPbWinningNumber={latestPbWinningNumber}
+        allMegamillionNumber={allMegamillionNumber}
+        allPowerballNumber={allPowerballNumber}
       />
     </section>
   );
