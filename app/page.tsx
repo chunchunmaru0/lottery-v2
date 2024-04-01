@@ -1,19 +1,9 @@
 "use client";
-import { auth } from "@/auth";
 import { Avatar } from "@/components/ui/avatar";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import {
-  CheckIcon,
-  DownloadIcon,
-  FacebookIcon,
-  InstagramIcon,
-  ScanIcon,
-  TwitterIcon,
-} from "lucide-react";
-import { signOut } from "next-auth/react";
+import { CheckIcon, DownloadIcon, ScanIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -46,7 +36,6 @@ export default function Home() {
                 >
                   MegaMillion
                 </Link>
-                <Button onClick={() => signOut()}>Signout</Button>
               </div>
             </div>
           </div>

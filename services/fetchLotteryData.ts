@@ -80,3 +80,54 @@ export async function fetchLotteryDataFromDB() {
     };
   }
 }
+
+export async function fetchAllLotteryDataFromDB(page: number = 0) {
+  try {
+    const megamillionResult = await prismaDBClient.megamillionResult.findMany({
+      skip: page * 10,
+      take: 10,
+      orderBy: { drawDate: "desc" },
+    });
+    const powerballResult = await prismaDBClient.powerballResult.findMany({
+      skip: page * 10,
+      take: 10,
+      orderBy: { drawDate: "desc" },
+    });
+    if (!megamillionResult || !powerballResult) throw Error("Empty DB");
+    const response = {
+      allPowerballNumber: powerballResult,
+      allMegamillionNumber: megamillionResult,
+    };
+
+    return response;
+  } catch (error) {
+    console.log("Error Fetching", error);
+    return {
+      error: true,
+      allPowerballNumber: [
+        {
+          id: "0",
+          drawDate: new Date(),
+          nextDrawDate: new Date(),
+          jackpot: 0,
+          allNumber: [0, 0, 0, 0, 0], // Array with size 6
+          winningNumber: [0, 0, 0, 0, 0],
+          powerball: 0,
+          powerplay: 0,
+        },
+      ],
+      allMegamillionNumber: [
+        {
+          id: "0",
+          drawDate: new Date(),
+          nextDrawDate: new Date(),
+          jackpot: 0,
+          allNumber: [0, 0, 0, 0, 0], // Array with size 6
+          winningNumber: [0, 0, 0, 0, 0],
+          megaball: 0,
+          megaplier: 0,
+        },
+      ],
+    };
+  }
+}

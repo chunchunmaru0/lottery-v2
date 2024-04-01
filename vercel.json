@@ -1,0 +1,13 @@
+{
+  "crons": [
+
+    {
+      "path": "/api/send?lotteryType=Megamillions",
+      "schedule": "15 3 * * 3,6"
+    },
+    {
+      "path": "/api/send?lotteryType=Powerball",
+      "schedule": "15 23 * * 2,4"
+    }
+  ]
+}

@@ -30,6 +30,11 @@ export type WinningNumberResponse = {
   latestPbWinningNumber: WinningPowerball;
 };
 
+export type AllWinningNumberResponse = {
+  allMegamillionNumber: WinningMegaMillions[];
+  allPowerballNumber: WinningPowerball[];
+  error?: boolean;
+};
 export interface LotteryCheckResponse {
   winningNumbers: number[];
   userNumbers: number[];
