@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GithubIcon, Loader2Icon, LoaderIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
+import GoogleSVG from "./GoogleSVG.svg";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -25,9 +26,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   function handleGithubLogin() {
     signIn("github", { callbackUrl: "/history" });
   }
+  function handleGoogleLogin() {
+    signIn("google", { callbackUrl: "/" });
+  }
+  const dev = process.env.NODE_ENV === "development";
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <form onSubmit={onSubmit}>
+      {/* <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
@@ -48,29 +53,45 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             Sign In with Email
           </Button>
         </div>
-      </form>
+      </form> */}
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-background px-2 text-muted-foreground">
-            Or continue with
+            continue with
           </span>
         </div>
       </div>
+      {dev && (
+        <Button
+          variant="outline"
+          type="button"
+          disabled={isLoading}
+          onClick={handleGithubLogin}
+        >
+          {isLoading ? (
+            <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <GithubIcon className="mr-2 h-4 w-4" />
+          )}
+          GitHub
+        </Button>
+      )}
+
       <Button
         variant="outline"
         type="button"
         disabled={isLoading}
-        onClick={handleGithubLogin}
+        onClick={handleGoogleLogin}
       >
         {isLoading ? (
           <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
         ) : (
-          <GithubIcon className="mr-2 h-4 w-4" />
-        )}{" "}
-        GitHub
+          <GoogleSVG className="mr-2 h-4 w-4" />
+        )}
+        Google
       </Button>
     </div>
   );
