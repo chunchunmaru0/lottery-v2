@@ -30,6 +30,10 @@ const LotteryInput = ({
     null,
     null,
   ]);
+  const session = useSession();
+  const isLoggedIn = session?.status === "authenticated";
+  const userId = session?.data?.user?.id;
+
   const [open, setOpen] = useState(false);
   const [responseData, setResponseData] =
     useState<ConditionalResponse<LotteryType> | null>(null);
@@ -76,16 +80,40 @@ const LotteryInput = ({
     setNumbers([null, null, null, null, null, null]);
   };
 
-  const session = useSession();
-  const isLoggedIn = session?.status === "authenticated";
   const handleStore = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (numbers.includes(null))
       return toast(
         "Invalid Lottery Number, Please enter your full Lottery Digits",
       );
-    toast("Saved, We will notify you on every new Draw");
+
+    const apiUrl = `/api/v2/save-lottery`;
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const raw = JSON.stringify({
+      numbers: numbers,
+      lotteryType: type,
+      userId,
+    });
+    try {
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+      });
+      if (res.ok) {
+        toast(
+          "We have saved your lottery, and notify you once the draw is available",
+        );
+      }
+    } catch (error) {
+      console.log(error);
+      toast("Somethin went wrong while saving your lottery data");
+    } finally {
+      setNumbers([null, null, null, null, null, null]);
+    }
   };
+
   return (
     <>
       <form onSubmit={handleSubmit} className={cn(className)}>
@@ -140,7 +168,7 @@ const LotteryInput = ({
               )}
               onClick={handleStore}
             >
-              Check Your Lottery
+              Save and Notify
             </Button>
           )}
         </div>

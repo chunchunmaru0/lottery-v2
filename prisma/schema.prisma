@@ -38,13 +38,14 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
-  email         String?   @unique
+  email         String?       @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
+  UserLottery   UserLottery[]
 }
 
 model VerificationToken {
@@ -62,7 +63,7 @@ model MegamillionResult {
   nextDrawDate  DateTime @unique
   jackpot       Float
   allNumber     Int[]
-  winningNumber Int[] @unique
+  winningNumber Int[]    @unique
   megaball      Int
   megaplier     Int
 }
@@ -74,7 +75,18 @@ model PowerballResult {
   nextDrawDate  DateTime @unique
   jackpot       Float
   allNumber     Int[]
-  winningNumber Int[] @unique
+  winningNumber Int[]    @unique
   powerball     Int
   powerplay     Int
+}
+
+model UserLottery {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String   @db.ObjectId
+  lotteryType String // e.g., "Powerball" or "Mega Millions"
+  numbers     Int[] // Array to store the user's lottery numbers
+  notified    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
