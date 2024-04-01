@@ -57,7 +57,7 @@ export default function LoginPage() {
                 Create an account
               </h1>
               <p className="text-sm text-muted-foreground">
-                Enter your email below to create your account
+                Click the social provider below to sign in to our App ❤️
               </p>
             </div>
             <UserAuthForm />
