@@ -31,7 +31,12 @@ export async function POST(req: NextRequest) {
   });
 
   const emails = [];
-
+  console.log(
+    "lotteryType:",
+    lotteryType,
+    "lotteryParticipants",
+    lotteryParticipants,
+  );
   for (const user of lotteryParticipants) {
     if (!user.email) {
       console.log("No User EMAIL");
@@ -60,6 +65,7 @@ export async function POST(req: NextRequest) {
         notified: true,
       },
     });
+    console.log(`Email is being sent to USER:`, user.email);
   }
 
   try {
