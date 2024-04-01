@@ -23,9 +23,11 @@ interface Props {
   }[];
 }
 const LotteryEmail: React.FC<Props> = ({ type, lottery }) => {
-  const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL!;
+  const baseUrl = process.env.NEXT_PUBLIC_URL
+    ? `https://${process.env.NEXT_PUBLIC_URL}`
+    : "http://localhost:3000";
   const getPrize = async (lotteryNum: string) => {
-    const apiUrl = `${NEXT_PUBLIC_URL}/api/v2/check-lottery/${type.toLowerCase()}?userNumber=${lotteryNum}`;
+    const apiUrl = `${baseUrl}/api/v2/check-lottery/${type.toLowerCase()}?userNumber=${lotteryNum}`;
     const res = await fetch(apiUrl, { method: "POST" });
     const data = await res.json();
     console.log("prize", data?.prize);
