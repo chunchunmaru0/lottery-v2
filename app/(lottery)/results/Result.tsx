@@ -25,7 +25,7 @@ const Result: React.FC<IResult> = ({
   const isMobileScreen = useMediaQuery("(max-width: 639px)");
 
   const alternatingRows = [];
-
+  console.log(allMegamillionNumber, allPowerballNumber);
   // Loop through the arrays simultaneously and add alternating rows
   for (
     let i = 0;
@@ -34,7 +34,7 @@ const Result: React.FC<IResult> = ({
   ) {
     if (allPowerballNumber[i]) {
       alternatingRows.push(
-        <TableRow key={`powerball-${allMegamillionNumber[i].id}`}>
+        <TableRow key={`powerball-${allMegamillionNumber[i]?.id}`}>
           <TableCell className="w-[100px] font-medium">
             <LotteryBalls
               type="Powerball"
@@ -53,7 +53,7 @@ const Result: React.FC<IResult> = ({
 
     if (allMegamillionNumber[i]) {
       alternatingRows.push(
-        <TableRow key={`megamillion-${allMegamillionNumber[i].id}`}>
+        <TableRow key={`megamillion-${allMegamillionNumber[i]?.id}`}>
           <TableCell className="w-[100px] font-medium">
             <LotteryBalls
               type="Megamillions"
